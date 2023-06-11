@@ -8,13 +8,13 @@ import { useRouter } from "next/router";
 const Landing = () => {
   const router = useRouter()
   return (
-    <div className="h-fit primary-bg min-h-screen flex flex-col pb-20 w-full">
+    <div className="h-fit primary-bg min-h-screen flex flex-col pb-20 w-full min-w-[100vw]">
       <LandingNav />
       <div className="flex md:flex-row flex-col gap-10 md:items-center items-start px-10 md:px-0 xl:gap-64 mt-10 md:mt-40 justify-center">
         <div className="flex flex-col gap-5">
           <h1 className="flex flex-col justify-center items-start">
             <span className="text-accent text-3xl">Trade</span>
-            <span className="text-secondary md:text-9xl text-5xl font-semibold">
+            <span className="text-secondary md:text-9xl text-7xl font-semibold">
               Hive
             </span>
           </h1>
@@ -33,7 +33,7 @@ const Landing = () => {
           </button>
         </div>
         <div className="">
-          <div className="front-cards md:h-96 md:w-96 h-48 w-48 rounded-xl flex flex-col items-start px-8 justify-center gap-3 relative">
+          <div className="front-cards md:h-96 md:w-96 h-64 w-64 rounded-xl flex flex-col items-start px-8 justify-center gap-3 relative">
             <div className="flex gap-3 justify-start items-center">
               <img
                 src="logo.svg"
@@ -86,7 +86,7 @@ const Landing = () => {
         </div>
       </div>
 
-      <div id="about" className="mt-32 px-10 flex justify-evenly items-center h-screen" style={{ marginTop: '300px' }}>
+      <div id="about" className="mt-20 px-10 flex justify-evenly items-center h-screen md:flex-row flex-col gap-5">
         <div className="flex flex-col gap-5">
           <h2 className="text-5xl font-semibold text-secondary">About</h2>
           <p className="text-accent max-w-md text-xl">
@@ -118,7 +118,7 @@ const Landing = () => {
         </div>
       </div>
 
-      <div id="Listing" className="mt-32 px-10 flex justify-evenly items-center">
+      <div id="Listing" className="mt-32 px-10 flex justify-evenly items-center md:flex-row flex-col gap-5">
         <div className="flex flex-col gap-5">
           <h2 className="text-5xl font-semibold text-secondary">Listing</h2>
           <p className="text-accent max-w-md">
