@@ -3,10 +3,12 @@ import ProtectedNav from "../../../components/ProtectedNav";
 import ProtectedSidebar from "../../../components/ProtectedSidebar";
 import { clerkClient, getAuth, buildClerkProps } from "@clerk/nextjs/server";
 import Link from "next/link";
+import { useSnapshot } from "valtio";
+import state from "../state";
 
 const Protected = (props) => {
   const userEmail = props.__clerk_ssr_state.user.emailAddresses[0].emailAddress
-  const [user, setUser] = useState(null)
+  const snap = useSnapshot(state)
   useEffect(() => {
     const fun = async () => {
       const response = await fetch('http://localhost:3000/api/mongoDB/putUser', {
@@ -37,12 +39,10 @@ const Protected = (props) => {
       })
       const data = await response.json();
       console.log(data)
-      setUser(data)
+      state.user = data
     }
     getUserDetails()
   }, [])
-
-  console.log(user)
 
   return (
     <div className="primary-bg h-screen">
@@ -57,8 +57,8 @@ const Protected = (props) => {
             </div>
             <div className="py-5">
               <h2 className="text-accent font-medium">Account Balance</h2>
-              {user? (
-                <span className="text-[#9DE796] md:text-5xl text-xl font-semibold">{user.credits} creds</span>
+              {state.user ? (
+                <span className="text-[#9DE796] md:text-5xl text-xl font-semibold">{state.user.credits} creds</span>
               ) : (
                 <span></span>
               )}

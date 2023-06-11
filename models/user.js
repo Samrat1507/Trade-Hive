@@ -14,5 +14,11 @@ userSchema.pre("save", async function (next) {
     next();
 })
 
+Object.keys(mongoose.models).forEach((model) => {
+    delete mongoose.models[model];
+}); // this prevents the Model Reloading Error
+
+
 var User = mongoose.model('User', userSchema);
+
 export default User
