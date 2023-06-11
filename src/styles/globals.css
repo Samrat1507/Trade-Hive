@@ -188,3 +188,59 @@
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
+/* Input Field */
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Input Label */
+.input-label {
+  margin-bottom: 4px;
+  font-size: medium;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Pay Button */
+.pay-button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #ffca3d;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+}
+
+
+
+/* Glassmorphism Styling */
+.glassmorphism {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Dotted Line */
+.dotted-line {
+  border-bottom: 1px dashed #ccc;
+  width: 100%;
+}
+
+.input-small {
+  width: 300px; 
+  font-size: 12px; 
+}
+
+.month{
+  font-size: small;
+}
