@@ -5,6 +5,7 @@ const state = proxy({
     screenSize: 800,
     username: '',
     secret: '',
+    user: {},
 })
 
 export default state;
