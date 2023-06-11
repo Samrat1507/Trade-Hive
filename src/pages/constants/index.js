@@ -24,7 +24,7 @@ export const links = [
       {
         name: "Statistics and Predictions",
         icon: <AiOutlineStock />,
-        to: "/protected/stats-prediction",
+        to: "https://trade-hive-predict.streamlit.app/",
       },
       {
         name: "Buy and Sell",
