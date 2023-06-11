@@ -60,8 +60,8 @@ const Payment = (props) => {
                   />
                 </div>
               </div>
-              <button className='pay-button'>Pay Now</button>
-              <button className='pay-button'>Pay with Account Creds</button>
+              <button className='pay-button hover:bg-green-700'>Pay Now</button>
+              <button className='pay-button hover:bg-green-700'>Pay with Account Creds</button>
             </div>
           </div>
         </div>
