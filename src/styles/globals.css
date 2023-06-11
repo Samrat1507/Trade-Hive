@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+.primary-bg {
+  background: linear-gradient(180deg, #000000 0%, #0b0b0b 0.01%, #272626 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dotted-line {
+  border: none;
+  height: 1px;
+  background-color: black;
+  background-image: repeating-linear-gradient(to right, transparent, transparent 2px, #D3D3D3 2px, #D3D3D3 16px);
+  background-size: 16px 4px;
+}
+
+.primary-bg-rev {
+  background: linear-gradient(0deg, #000000 0%, #0b0b0b 0.01%, #272626 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.front-cards {
+  background: linear-gradient(203.59deg, #1f2223 15.71%, #202121 95.52%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px #464523;
+}
+
+.widgets {
+  background: linear-gradient(180deg, #1f2223 0%, #202121 100%);
+  box-shadow: 0px 4px 4px #464523;
+}
+
+.sidebar-bg {
+  background: #1f2223;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.chart-bg {
+  background: #151e20;
+}
+
+.back-circle {
+  background: radial-gradient(
+    29.35% 29.35% at 50% 50%,
+    #555626 0%,
+    rgba(116, 111, 111, 0) 100%
+  );
+}
+
+.button-bg {
+  background: linear-gradient(180deg, #fffa7b 0%, #ffd233 100%);
+  box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+}
+
+.auth-bg {
+  background-image: url('../../public/signinbg.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.cl-internal-b3fm6y{
+  background-color: rgb(25, 25, 26);
+}
+
+.active-link-bg {
+  background: linear-gradient(180deg, #FFFA7B 0%, #FFF572 12.5%, #FFF36E 58.85%, #FFD233 100%);
+}
+
+.ce-chats-container {
+  background-color: #000000 !important;
+}
+
+.ce-chat-form-container {
+  background-color: #000000 !important;
+  color:#FDFF93;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ce-settings {
+  background-color: #000000 !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  font-size: small !important;
+  padding-top: 1vh;
+}
+
+.ce-wrapper {
+  background-color: #000000;
+  border-radius: 16px;
+}
+
+.ce-section-title-container {
+  background-color: #151e20 !important;
+  color: #FDFF93 !important;
+  margin-top: 2vh;
+  border-radius: 16px;
+}
+
+.ce-input.ce-text-input {
+  background-color: #000000 !important;
+  color:#FFD233;
+}
+
+.ce-primary-button {
+  background-color: #0000 !important;
+}
+
+.ce-chat-card {
+  background-color: #202121 !important;
+  color: white;
+}
+
+.ce-chat-title-container {
+  background-color: black;
+  color:#FDFF93 !important;
+}
+
+.ce-message-date-text {
+  background-color: #1f2223;
+  color:#FFD233 !important;
+}
+
+.ce-message-bubble.ce-my-message-bubble {
+  background-color: #FFD233 !important;
+  color:#0b0b0b !important;
+}
+
+.ce-message-bubble.ce-their-message-bubble {
+  background-color:#FDFF93 !important;
+  color:#0b0b0b !important;
+}
+
+.ce-chat-list {
+  background-color: #000000 !important;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent; 
+}
+
+.ql-editor.ql-blank {
+  background-color: #000000 !important;
+}
+
+.ce-message-row {
+  background:  #272626 !important;
+  color:white !important;
+  padding: 0px 0px 0px !important;
+}
+
+.ce-their-message-sender{
+  color:#D3D3D3 !important;
+}
+
+.ql-toolbar {
+  background-color: #000000;
+}
+
+.ql-editor {
+  background-color: #000000;
+  color: white;
+}
+
+#ce-send-message-button {
+  background-color: #000000 !important;
+}
+
+.ce-feed-container-bottom {
+  background-color: #000000;
+}
+
+.portfolio-bg {
+  background-image: url('../../public/Rectangle.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 30px 0 rgba(31, 38, 135, 0.07);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
