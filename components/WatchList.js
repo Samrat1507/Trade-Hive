@@ -50,7 +50,7 @@ const WatchList = () => {
           {price === "" ? (
             <span>Enter a symbol to see price</span>
           ) : (
-            <span>Rs. {price}</span>
+            <span>${price}</span>
           )}
         </div>
       </div>

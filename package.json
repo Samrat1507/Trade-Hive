@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.19.1",
     "@clerk/themes": "^1.7.5",
+    "framer-motion": "^10.12.16",
     "mongodb": "4.1",
     "mongoose": "^7.2.3",
     "next": "13.4.4",

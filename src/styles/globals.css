@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+*{
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .primary-bg {

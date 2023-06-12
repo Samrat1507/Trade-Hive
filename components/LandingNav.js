@@ -1,11 +1,22 @@
 import React from "react";
 import Link from "next/link";
+import { slideIn, staggerContainer } from "../utils/motion";
+import { motion } from "framer-motion";
 
 const LandingNav = () => {
   return (
-    <div className="fixed top-0 md:block hidden w-full z-10 ">
-      <div className="absolute top-0 w-full bg-black -z-10 opacity-40 h-full"></div>
-      <nav>
+    <motion.div
+      variants={staggerContainer}
+      whileInView="show"
+      initial="hidden"
+      viewport={{ once: false, amount: 0.25 }}
+      className="fixed top-0 md:block hidden w-full z-10 ">
+      <motion.div
+       variants={slideIn('down', 'spring', 0, 1)}
+      className="absolute top-0 w-full bg-black -z-10 opacity-40 h-full"></motion.div>
+      <motion.nav
+       variants={slideIn('down', 'spring', 0, 1)}
+      >
         <ul className="px-20 py-5 flex justify-between">
           <li className="flex gap-3 items-center">
             <img src="logo.svg" alt="logo" className="h-8 w-8" />
@@ -52,14 +63,14 @@ const LandingNav = () => {
             </li>
           </ul>
         </ul>
-      </nav>
-    </div>
+      </motion.nav>
+    </motion.div>
   );
 };
 export const getServerSideProps = async () => {
   console.log("hiii")
 
-  
+
   return { props: {} }
 }
 
