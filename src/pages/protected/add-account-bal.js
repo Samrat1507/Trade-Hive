@@ -73,9 +73,9 @@ const AddAccountBalance = () => {
             </div>
           </div>
         </div>
-        <div className="h-screen w-[100vw] px-4 md:px-0 md:w-[30vw] md:pr-16 pb-12 relative flex flex-col-reverse">
+        <div className="h-screen w-[100vw] mt-7 px-4 md:px-0 md:w-[30vw] md:pr-16 pb-12 relative flex flex-col-reverse">
           <div className="primary-bg-rev h-[70vh] flex flex-col-reverse relative gap-10 px-5 pb-10 items-center">
-            <div className="absolute px-4 md:px-0 text-accent h-[60%] rounded-lg w-[70%] glassmorphism -top-32 flex flex-col pt-10 pb-5 gap-5 items-center">
+            <div className="absolute px-4  md:px-0 text-accent h-[60%] rounded-lg w-[70%] glassmorphism -top-32 flex flex-col pt-10 pb-5 gap-5 items-center">
               <div className="flex text-[#929292] justify-between w-full px-10">
                 <BsSim className="text-2xl" />
                 <FaCcMastercard className="text-2xl" />

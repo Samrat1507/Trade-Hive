@@ -1,21 +1,23 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default async function getCurrentPrice(req, res) {
-    if (req.method === 'POST'){
-        try {
-            const apiKey = process.env.NEXT_PUBLIC_STOCK_API_KEY;
-            const symbol = req.body.symbol; 
-            
-            const apiUrl = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
+  if (req.method === "POST") {
+    const options = {
+      method: "GET",
+      url: "https://mboum-finance.p.rapidapi.com/qu/quote/financial-data",
+      params: { symbol: req.body.symbol },
+      headers: {
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPID_API_KEY,
+        "X-RapidAPI-Host": process.env.NEXT_PUBLIC_X_RAPID_API_HOSTKEY,
+      },
+    };
 
-            const response = await axios.get(apiUrl);
-            const data = response.data['Global Quote'];
-            const currentPrice = data['05. price'];
-            
-            res.send(JSON.stringify({price: currentPrice}));
-        } catch (error) {
-            console.error('Error fetching stock price:', error);
-            res.status(500).send(JSON.stringify({message:'Error fetching stock price'}));
-        }
+    try {
+      const response = await axios.request(options);
+      res.send(JSON.stringify({price: response.data.financialData.currentPrice.raw}))
+    } catch (error) {
+      console.error(error);
+      res.send(JSON.stringify({msg: "Error"}))
     }
+  }
 }
