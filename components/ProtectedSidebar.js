@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { links } from "@/pages/constants";
 import Image from "next/image";
 import logo from '../public/logo.svg'
+import Link from "next/link";
 
 
 const ProtectedSidebar = ({ active }) => {
@@ -65,17 +66,18 @@ const ProtectedSidebar = ({ active }) => {
           <div key={link.title} className="">
             <p className="text-white mt-4 m-3 uppercase">{link.title}</p>
             {link.links.map((l) => (
-              <div
+              <Link legacyBehavior
                 key={l.name}
                 className={`${active === l.name ? activeLink : normal
                   } flex items-center gap-4 px-5 py-1 cursor-pointer`}
-                onClick={() => {
-                  router.push(l.to);
-                }}
+                href={l.to}
               >
+                <a target={l.name==="Statistics and Predictions" ? '_blank' : ''} className={`${active === l.name ? activeLink : normal
+                  } flex items-center gap-4 px-5 py-1 cursor-pointer`}>
                 {l.icon}
                 <span className="capitalize">{l.name}</span>
-              </div>
+                </a>
+              </Link>
             ))}
           </div>
         ))}
