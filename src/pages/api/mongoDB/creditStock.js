@@ -1,14 +1,12 @@
 import User from "../../../../models/user"
 
-export default async function updateBalance (req, res) {
+export default async function creditStock (req, res) {
     if(req.method === "POST") {
         try {
             const user = await User.findOne({email: req.body.email})
             if(user){
-                user.credits = user.credits + parseFloat(req.body.credit)
-                if(req.body.stock) {
-                    user.holdings[req.body.stock] = user.holdings[req.body.stock] - req.body.qty
-                }
+                user.holdings[req.body.stock] = user.holdings[req.body.stock] - req.body.qty
+                user.credits = user.credits - req.body.value
                 await user.save()
                 res.status(200).send(JSON.stringify({message: "User updated"}))
             } else {
@@ -19,4 +17,4 @@ export default async function updateBalance (req, res) {
             res.status(500).send(JSON.stringify({message: 'Error'}))
         }
     }
-}
+} 

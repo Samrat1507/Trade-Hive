@@ -2,8 +2,54 @@ import React from 'react';
 import { BiWifi } from 'react-icons/bi';
 import { FaCcMastercard } from 'react-icons/fa';
 import { BsSim } from 'react-icons/bs';
+import { useRouter } from 'next/router';
+import state from '../state';
+import { useSnapshot } from 'valtio';
 
 const Payment = (props) => {
+
+  const router = useRouter()
+  const snap = useSnapshot(state)
+
+  const { key, value, price } = router.query
+
+  const handleCardPayment = async () => {
+    console.log("Card")
+
+    const response = await fetch('/api/mongoDB/cardStock', {
+      method:"POST",
+      headers: {
+        'Conetent-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: state.user.email,
+        price: parseFloat(price) * parseFloat(value),
+        qty: parseInt(value),
+        stock: key,
+      })
+    })
+
+    const data = await response.json()
+    alert(data.message)
+  }
+  const handleCreditPayment = async() => {
+    console.log("Credits")
+    const response = await fetch('/api/mongoDB/creditStock', {
+      method:"POST",
+      headers: {
+        'Conetent-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: state.user.email,
+        price: parseFloat(price) * parseFloat(value),
+        stock: key,
+      })
+    })
+
+    const data = await response.json()
+    console.log(data)
+  }
+
   return (
     <div className="h-fit md:h-screen w-full primary-bg gap-10 flex flex-col items-center">
       <h3 className='relaive md:absolute uppercase mt-12 md:mt-0 md:top-12 cursor-default tracking-[24px] text-secondary text-xl md:text-2xl'>
@@ -60,13 +106,23 @@ const Payment = (props) => {
                   />
                 </div>
               </div>
-              <button className='bg-yellow-200 hover:bg-yellow-100 py-3 font-medium text-primary rounded-xl'>Pay Now</button>
+              <button className='bg-yellow-200 hover:bg-yellow-100 py-3 font-medium text-primary rounded-xl'
+                onClick={(e)=> {
+                  e.preventDefault();
+                  handleCardPayment();
+                }}
+              >Pay Now</button>
               <div className='flex items-center gap-10'>
                 <div className='bg-accent h-[1px] w-full'></div>
                 <div className='text-accent font-semibold text-xs'>OR</div>
                 <div className='bg-accent h-[1px] w-full'></div>
               </div>
-              <button className='bg-yellow-200 hover:bg-yellow-100 py-3 font-medium text-primary rounded-xl'>Pay with Account Creds</button>
+              <button className='bg-yellow-200 hover:bg-yellow-100 py-3 font-medium text-primary rounded-xl'
+                onClick={(e)=>{
+                  e.preventDefault()
+                  handleCreditPayment();
+                }}
+              >Pay with Account Creds</button>
             </div>
           </div>
         </div>
@@ -82,7 +138,7 @@ const Payment = (props) => {
                 <div className='w-full text-center py-2 rounded-full font-bold text-black bg-yellow-200'>Trade Hive</div>
               </div>
             </div>
-            <p className='text-accent'>Total: </p>
+            <p className='text-accent'>Total: ${parseFloat(price) * parseFloat(value)} </p>
             <div className='w-full dotted-line'></div>
             <div className='flex gap-2'>
               <ul className='list-none text-accent grid gap-2'>
@@ -98,10 +154,10 @@ const Payment = (props) => {
                 <li>:</li>
               </ul>
               <ul className='list-none text-accent grid gap-2'>
-                <li>-</li>
-                <li>-</li>
-                <li>-</li>
-                <li>-</li>
+                <li>{key}</li>
+                <li>1229128371</li>
+                <li>{value}</li>
+                <li>${price}</li>
               </ul>
             </div>
           </div>

@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-const WatchList = () => {
+
+
+const ToBuy = () => {
   const [symbol, setSymbol] = useState("");
   const [price, setprice] = useState("");
+  
 
   const findPrice = async (e) => {
     e.preventDefault();
@@ -19,11 +22,12 @@ const WatchList = () => {
     console.log(data);
     setprice(data.price);
   };
+
   return (
     <div className="widgets w-full h-fit min-h-[35vh] px-10 pb-10 rounded-xl">
       <div className="flex flex-col gap-5">
         <h2 className="text-secondary text-2xl mt-5 font-semibold">
-          Watch List
+          Enter a Stock
         </h2>
         <div >
           <form action="" className="flex text-secondary text-xl gap-3 items-center">
@@ -50,7 +54,7 @@ const WatchList = () => {
           {price === "" ? (
             <span>Enter a symbol to see price</span>
           ) : (
-            <span>${price}</span>
+            <span>Rs. {price}</span>
           )}
         </div>
       </div>
@@ -58,4 +62,4 @@ const WatchList = () => {
   );
 };
 
-export default WatchList;
+export default ToBuy;
