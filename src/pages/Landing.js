@@ -72,7 +72,7 @@ const Landing = () => {
             </div>
           </div>
           <div className="hidden md:block">
-            <div className="front-cards h-64 w-48 rounded-xl flex flex-col items-center justify-center gap-3 absolute lg:bottom-4 md:top-80 xl:right-32 md:right-10">
+            <div className="front-cards h-64 w-48 rounded-xl flex flex-col items-center justify-center gap-3 absolute lg:bottom-4 md:top-52 xl:-right-24 md:-right-24">
               <div className="flex gap-3 justify-start items-center">
                 <img src="logo.svg" alt="logo" className="h-4 w-4" />
                 <h1 className="flex flex-col">

@@ -19,7 +19,7 @@ export default function Home() {
   )
 }
 export const getServerSideProps = async () => {
-  const response=await fetch('https://trade-hive.vercel.app/api/mongoDB/connection',{
+  const response=await fetch('https://trade-hive.netlify.app/api/mongoDB/connection',{
     method:"GET",
     
   })  
