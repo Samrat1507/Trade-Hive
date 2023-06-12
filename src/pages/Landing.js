@@ -10,7 +10,7 @@ import { slideIn, staggerContainer } from '../../utils/motion'
 const Landing = () => {
   const router = useRouter()
   return (
-    <div className="h-fit primary-bg min-h-screen flex flex-col pb-20 w-full min-w-[100vw]">
+    <div className="h-fit overflow-hidden primary-bg min-h-screen flex flex-col pb-20 w-full min-w-[100vw]">
       <LandingNav />
       <motion.div
         variants={staggerContainer}
