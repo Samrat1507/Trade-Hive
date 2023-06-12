@@ -12,7 +12,7 @@ export default async function getCurrentPrice(req, res) {
             const data = response.data['Global Quote'];
             const currentPrice = data['05. price'];
             
-            res.send(JSON.stringify({message:`Current price of ${symbol}: ${currentPrice}`}));
+            res.send(JSON.stringify({price: currentPrice}));
         } catch (error) {
             console.error('Error fetching stock price:', error);
             res.status(500).send(JSON.stringify({message:'Error fetching stock price'}));

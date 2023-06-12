@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSnapshot } from "valtio";
 import state from "../state";
 import { MdOutlineAddCard } from "react-icons/md";
+import PortfolioHoldings from "../../../components/PortfolioHoldings";
 
 const Protected = (props) => {
   const userEmail = props.__clerk_ssr_state.user.emailAddresses[0].emailAddress;
@@ -45,7 +46,6 @@ const Protected = (props) => {
         }
       );
       const data = await response.json();
-      console.log(data);
       state.user = data;
     };
     getUserDetails();
@@ -84,6 +84,28 @@ const Protected = (props) => {
                   <MdOutlineAddCard />
                 </span>
               )}
+            </div>
+          </div>
+        </div>
+
+        <div className='mt-20 pr-5'>
+          <div className='h-fit widgets w-fit md:min-w-[35vw] min-w-full flex flex-col gap-5 pr-10 pl-4 rounded-xl py-5'>
+            <h2 className='text-2xl text-accent font-medium'>Current Holdings</h2>
+            <div>
+              <div className='flex gap-10 text-accent'>
+                <span>Company</span>
+                <span>Quantity</span>
+              </div>
+              <div className='w-full h-[1px] bg-secondary mt-2'>
+              </div>
+
+              <div className='mt-4'>
+                {
+                  state.user.holdings ? (
+                    <PortfolioHoldings holdings={state.user.holdings}/>
+                  ) : (<span className='text-accent'>No Holdings were Found</span>)
+                }
+              </div>
             </div>
           </div>
         </div>
