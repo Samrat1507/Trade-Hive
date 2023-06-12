@@ -12,6 +12,12 @@
   background-size: cover;
 }
 
+.primary-bg-mobileL{
+  background: linear-gradient(#000000,#272626);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .dotted-line {
   border: none;
   height: 1px;

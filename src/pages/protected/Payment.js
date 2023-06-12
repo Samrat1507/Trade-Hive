@@ -5,15 +5,15 @@ import { BsSim } from 'react-icons/bs';
 
 const Payment = (props) => {
   return (
-    <div className="h-fit md:h-screen w-full primary-bg flex flex-col items-center">
-      <h3 className='absolute uppercase top-12 cursor-default tracking-[24px] text-secondary text-2xl'>
+    <div className="h-fit md:h-screen w-full primary-bg gap-10 flex flex-col items-center">
+      <h3 className='relaive md:absolute uppercase mt-12 md:mt-0 md:top-12 cursor-default tracking-[24px] text-secondary text-xl md:text-2xl'>
         Payment
       </h3>
       <div className='flex flex-col md:flex-row'>
-        <div className="h-screen md:w-[70vw] primary-bg flex flex-col items-center justify-center">
-          <div className='h-fit flex flex-col items-center gap-4 px-5  mt-24'>
-            <div className='w-full widgets rounded-lg  pt-12 pb-16 px-8 flex flex-col gap-4 h-full'>
-            <div className=' text-center uppercase text-xl mb-2 tracking-[12px] drop-shadow-md text-secondary'>Enter Card Details</div>
+        <div className="h-screen w-full md:w-[70vw] primary-bg-mobile md:primary-bg px-5 md:px-0 flex flex-col items-center justify-center">
+          <div className='h-fit flex flex-col items-center gap-4 md:px-5  md:mt-24'>
+            <div className='w-full widgets rounded-lg pt-12 pb-16 px-3 md:px-8 flex flex-col gap-4 h-full'>
+              <div className=' text-center uppercase text-xl mb-2 tracking-[12px] drop-shadow-md text-secondary'>Enter Card Details</div>
               <input
                 type='text'
                 className='input-field px-2'
@@ -28,7 +28,7 @@ const Payment = (props) => {
                   e.target.value = formattedValue;
                 }}
               />
-              <div className='flex gap-4'>
+              <div className='flex gap-4 flex-col md:flex-row'>
                 <div className='flex flex-col gap-1'>
                   <label className='text-accent month'>CVV</label>
                   <input
