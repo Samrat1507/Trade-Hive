@@ -7,7 +7,8 @@ import { links } from "@/pages/constants";
 import Image from "next/image";
 import logo from '../public/logo.svg'
 import Link from "next/link";
-
+import { motion } from "framer-motion";
+import { slideIn,staggerContainer } from "../utils/motion";
 
 const ProtectedSidebar = ({ active }) => {
   const snap = useSnapshot(state);
@@ -31,10 +32,18 @@ const ProtectedSidebar = ({ active }) => {
     }
   }, [state.screenSize]);
   return (
-    <div
+    <motion.div
+    variants={staggerContainer}
+      whileInView="show"
+      initial="hidden"
+      viewport={{ once: false, amount: 0.25 }}
+    >
+
+    <motion.div
+      variants={slideIn('left', 'spring', 0, 1)}
       className={`fixed top-0 sidebar-bg h-full px-10 py-7 z-10 md:max-w-[30vw] ${state.sidebar ? "block" : "hidden"
         }`}
-    >
+        >
       <div
         className="flex flex-row-reverse gap-10 justify-center cursor-pointer"
       >
@@ -82,7 +91,8 @@ const ProtectedSidebar = ({ active }) => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
+    </motion.div>
   );
 };
 

@@ -8,6 +8,8 @@ import { MdOutlineAddCard } from "react-icons/md";
 import PortfolioHoldings from "../../../components/PortfolioHoldings";
 import WatchList from "../../../components/WatchList";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+import { slideIn, staggerContainer } from '../../../utils/motion'
 
 const Protected = (props) => {
   const userEmail = props.__clerk_ssr_state.user.emailAddresses[0].emailAddress;
@@ -54,13 +56,18 @@ const Protected = (props) => {
   }, []);
 
   return (
-    <div className="primary-bg min-h-screen h-fit pb-10">
+    <motion.div
+      variants={staggerContainer}
+      whileInView="show"
+      initial="hidden"
+      viewport={{ once: false, amount: 0.25 }}
+      className="primary-bg min-h-screen h-fit pb-10">
       <ProtectedNav />
       <ProtectedSidebar active="Your Holdings" />
-      <div
-        className={`${
-          state.sidebar ? "md:pl-[32vw] xl:pl-[30vw]" : "md:pl-[5vw]"
-        } pl-5 mt-10`}
+      <motion.div
+       variants={slideIn('right', 'spring', 0, 1)}
+        className={`${state.sidebar ? "md:pl-[32vw] xl:pl-[30vw]" : "md:pl-[5vw]"
+          } pl-5 mt-10`}
       >
         <div className="portfolio-bg rounded-xl px-10 py-5 mr-5 drop-shadow-md">
           <div className="flex justify-between">
@@ -122,8 +129,8 @@ const Protected = (props) => {
             <WatchList />
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

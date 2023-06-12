@@ -33,7 +33,7 @@ const PortfolioHoldings = ({ holdings }) => {
           <div key={key} className="text-accent flex gap-16 items-center">
             <span>{key} </span>
             <span>{value}</span>
-            <span className="px-4">{prices[key]}</span>
+            <span className="px-4">${prices[key]*value}</span>
           </div>
         </div>
       ))}
