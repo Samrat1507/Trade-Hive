@@ -11,9 +11,10 @@ const Payment = (props) => {
   const router = useRouter()
   const snap = useSnapshot(state)
 
-  const { key, value, price } = router.query
-
+  const { symbol, qty, price } = router.query
+  
   const handleCardPayment = async () => {
+    console.log(state.user.email)
     console.log("Card")
 
     const response = await fetch('/api/mongoDB/cardStock', {
@@ -23,9 +24,9 @@ const Payment = (props) => {
       },
       body: JSON.stringify({
         email: state.user.email,
-        price: parseFloat(price) * parseFloat(value),
-        qty: parseInt(value),
-        stock: key,
+        price: parseFloat(price) * parseFloat(qty),
+        qty: parseInt(qty),
+        stock: symbol,
       })
     })
 
@@ -33,7 +34,7 @@ const Payment = (props) => {
     // alert(data.message)
   }
   const handleCreditPayment = async() => {
-    console.log("Credits")
+    console.log(state.user.email)
     const response = await fetch('/api/mongoDB/creditStock', {
       method:"POST",
       headers: {
@@ -41,8 +42,9 @@ const Payment = (props) => {
       },
       body: JSON.stringify({
         email: state.user.email,
-        price: parseFloat(price) * parseFloat(value),
-        stock: key,
+        price: parseFloat(price) * parseFloat(qty),
+        qty: parseInt(qty),
+        stock: symbol,
       })
     })
 
@@ -138,7 +140,7 @@ const Payment = (props) => {
                 <div className='w-full text-center py-2 rounded-full font-bold text-black bg-yellow-200'>Trade Hive</div>
               </div>
             </div>
-            <p className='text-accent'>Total: ${parseFloat(price) * parseFloat(value)} </p>
+            <p className='text-accent'>Total: ${parseFloat(price) * parseFloat(qty)} </p>
             <div className='w-full dotted-line'></div>
             <div className='flex gap-2'>
               <ul className='list-none text-accent grid gap-2'>
@@ -154,9 +156,9 @@ const Payment = (props) => {
                 <li>:</li>
               </ul>
               <ul className='list-none text-accent grid gap-2'>
-                <li>{key}</li>
+                <li>{symbol}</li>
                 <li>1229128371</li>
-                <li>{value}</li>
+                <li>{qty}</li>
                 <li>${price}</li>
               </ul>
             </div>
