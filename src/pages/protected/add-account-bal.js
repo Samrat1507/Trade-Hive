@@ -2,11 +2,32 @@ import React, { useState } from "react";
 import { BiWifi } from "react-icons/bi";
 import { FaCcMastercard } from "react-icons/fa";
 import { BsSim } from "react-icons/bs";
+import state from "../state";
+import { useSnapshot } from "valtio";
 
 const AddAccountBalance = () => {
   const [amt, setamt] = useState("");
+  const [email, setEmail] = useState("")
+  const snap = useSnapshot(state)
+
+  const handleBalanceUpdate = async () => {
+    console.log(state.username)
+    const response = await fetch('http://localhost:3000/api/mongoDB/updateBalance', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        credit: amt,
+      })
+    })
+
+    const data = await response.json()
+    alert(data.message)
+  };
   return (
-    <div className="h-fit md:h-screen w-full primary-bg flex flex-col items-center">
+    <div className="h-fit md:min-h-screen w-full primary-bg flex flex-col items-center">
       <h3 className="absolute uppercase top-12 cursor-default tracking-[24px] text-secondary text-2xl">
         Payment
       </h3>
@@ -17,6 +38,14 @@ const AddAccountBalance = () => {
               <div className=" text-center uppercase text-xl mb-2 tracking-[12px] drop-shadow-md text-secondary">
                 Enter Card Details
               </div>
+              <input
+                type="text"
+                className="input-field px-2"
+                placeholder="Registered Email"
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                }}
+              />
               <input
                 type="text"
                 className="input-field px-2"
@@ -39,6 +68,7 @@ const AddAccountBalance = () => {
                     className="py-2 rounded-md px-2"
                     placeholder="669"
                     maxLength={4}
+                    required
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -52,6 +82,7 @@ const AddAccountBalance = () => {
                     placeholder="MM"
                     min={1}
                     max={12}
+                    required
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -64,10 +95,17 @@ const AddAccountBalance = () => {
                     className="py-2 rounded-md px-2"
                     placeholder="YYYY"
                     maxLength={4}
+                    required
                   />
                 </div>
               </div>
-              <button className="bg-yellow-200 hover:bg-yellow-100 mt-6 py-3 font-medium text-primary rounded-xl">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleBalanceUpdate();
+                }}
+                className="bg-yellow-200 hover:bg-yellow-100 mt-6 py-3 font-medium text-primary rounded-xl"
+              >
                 Pay Now
               </button>
             </div>
@@ -89,7 +127,9 @@ const AddAccountBalance = () => {
             </div>
             <p className="text-accent">Total: {amt}</p>
             <div className="w-full dotted-line"></div>
-                <span className="text-[#919191] font-medium">1 credit is equivalent to Rs. 1.00/-</span>
+            <span className="text-[#919191] font-medium">
+              1 credit is equivalent to Rs. 1.00/-
+            </span>
             <div className="flex gap-2">
               <ul className="list-none text-accent grid gap-2">
                 <li>Company</li>
@@ -105,7 +145,9 @@ const AddAccountBalance = () => {
                   <input
                     type="text"
                     className="bg-[#292a2d] outline-none px-2 py-1 rounded-xl w-32"
-                    onChange={(e)=>{setamt(e.target.value)}}
+                    onChange={(e) => {
+                      setamt(e.target.value);
+                    }}
                   />
                 </li>
               </ul>
