@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import state from "../state";
 import { useSnapshot } from "valtio";
 import ProtectedNav from "../../../components/ProtectedNav";
@@ -6,10 +6,32 @@ import ProtectedSidebar from "../../../components/ProtectedSidebar";
 import Image from "next/image";
 import stock4 from "../../../public/stock4.jpg";
 import { ChatEngine } from "react-chat-engine";
+import { clerkClient, getAuth, buildClerkProps } from "@clerk/nextjs/server";
 
-const ExpertChat = () => {
+const ExpertChat = (props) => {
   const snap = useSnapshot(state);
-
+  state.username = props.__clerk_ssr_state.user.firstName
+  state.secret = props.__clerk_ssr_state.user.id
+  useEffect(() => {
+    const fun = async () => {
+      const body = {
+        "username": state.username,
+        "secret": state.secret
+      }
+      console.log(body)
+      const response = await fetch(`https://api.chatengine.io/users/`, {
+        method: "PUT",
+        headers: {
+          'PRIVATE-KEY': process.env.NEXT_PUBLIC_CHAT_EXPERT_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body),
+      })
+      const data = await response.json()
+    }
+    if (state.user.expertBought === true)
+      fun()
+  }, [])
   const handleBuy = async () => {
     if (state.user.credits < 50) {
       alert(
@@ -39,18 +61,18 @@ const ExpertChat = () => {
       <ProtectedNav />
       <ProtectedSidebar active="Chat with Expert" />
       {state.user.expertBought ? (
-        <div className="widgets">
+        <div className={`${state.sidebar ? "md:pl-[32vw] xl:pl-[30vw]" : "pl-10"
+      } pr-10`}>
           <ChatEngine
-            projectID="29505e95-f9f5-4bf6-86ab-c8a3b3758406"
-            userName={state.user.email}
-            userSecret={state.user._id}
+            projectID="aa629215-3c17-4eb8-b506-7f07b4ca0d6e"
+            userName={state.username}
+            userSecret={state.secret}
           />
         </div>
       ) : (
         <div
-          className={`${
-            state.sidebar ? "md:pl-[32vw] xl:pl-[30vw]" : "pl-10"
-          } pr-10`}
+          className={`${state.sidebar ? "md:pl-[32vw] xl:pl-[30vw]" : "pl-10"
+            } pr-10`}
         >
           <div className="widgets px-5 rounded-lg py-5 flex flex-col gap-10 mt-20 ">
             <h1 className="text-secondary text-2xl font-bold">Buy a Session</h1>
@@ -83,10 +105,21 @@ const ExpertChat = () => {
               />
             </div>
           </div>
+          <p className="text-white font-bold text-sm mt-4">Ps: If the chat doesnot load after payment. Go to your holdings in dashboard and click expert chat again.</p>
         </div>
       )}
     </div>
   );
 };
 
+export const getServerSideProps = async ctx => {
+  const { userId } = getAuth(ctx.req)
+  if (!userId) {
+    return
+  }
+  const user = userId ? await clerkClient.users.getUser(userId) : undefined;
+
+
+  return { props: { ...buildClerkProps(ctx.req, { user }) } }
+}
 export default ExpertChat;
