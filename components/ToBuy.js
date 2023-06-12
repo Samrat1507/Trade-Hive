@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-
+import { useRouter } from "next/router";
 
 const ToBuy = () => {
   const [symbol, setSymbol] = useState("");
   const [price, setprice] = useState("");
-  
+  const [qty, setqty] = useState("");
+  const router = useRouter()
+
+  const handlePay = () => {
+    const p = 110
+    router.push({
+      pathname: "/protected/Payment",
+      query: { symbol, qty, price },
+    });
+  };
 
   const findPrice = async (e) => {
     e.preventDefault();
@@ -29,8 +38,11 @@ const ToBuy = () => {
         <h2 className="text-secondary text-2xl mt-5 font-semibold">
           Enter a Stock
         </h2>
-        <div >
-          <form action="" className="flex text-secondary text-xl gap-3 items-center">
+        <div>
+          <form
+            action=""
+            className="flex text-secondary text-xl gap-3 items-center"
+          >
             <input
               type="text"
               placeholder="Enter a symbol"
@@ -57,6 +69,21 @@ const ToBuy = () => {
             <span>Rs. {price}</span>
           )}
         </div>
+        <input
+          type="text"
+          onChange={(e) => {
+            setqty(e.target.value);
+          }}
+        />
+        <button
+          className="text-primary button-bg w-fit py-1 px-4 rounded-lg"
+          onClick={(e) => {
+            e.preventDefault()
+            handlePay();
+          }}
+        >
+          Buy
+        </button>
       </div>
     </div>
   );
