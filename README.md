@@ -115,7 +115,7 @@ We encourage you to visit our GitHub profiles and follow our work.
 
 ## Show Your Support
 
-If you find  helpful and enjoy using it, please consider giving us a ⭐ on our GitHub repository. Your support motivates us to continue developing and improving the app for the benefit of the art community.
+If you find  helpful and enjoy using it, please consider giving us a ⭐ on our GitHub repository. Your support motivates us to continue developing and improving the app for the benefit of the trading community.
 
 ## Connect With Us
 
