@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 
 const PortfolioHoldings = ({ holdings }) => {
-  const router = useRouter();
   const [prices, setPrices] = useState({});
 
   useEffect(() => {

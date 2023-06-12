@@ -7,6 +7,7 @@ import { useSnapshot } from "valtio";
 import state from "../state";
 import { MdOutlineAddCard } from "react-icons/md";
 import PortfolioHoldings from "../../../components/PortfolioHoldings";
+import WatchList from "../../../components/WatchList";
 
 const Protected = (props) => {
   const userEmail = props.__clerk_ssr_state.user.emailAddresses[0].emailAddress;
@@ -52,7 +53,7 @@ const Protected = (props) => {
   }, []);
 
   return (
-    <div className="primary-bg h-screen">
+    <div className="primary-bg min-h-screen h-fit pb-10">
       <ProtectedNav />
       <ProtectedSidebar active="Your Holdings" />
       <div
@@ -88,9 +89,9 @@ const Protected = (props) => {
           </div>
         </div>
 
-        <div className='mt-20 pr-5'>
-          <div className='h-fit widgets w-fit md:min-w-[35vw] min-w-full flex flex-col gap-5 pr-10 pl-4 rounded-xl py-5'>
-            <h2 className='text-2xl text-accent font-medium'>Current Holdings</h2>
+        <div className='mt-16 pr-5 flex xl:flex-row flex-col xl:gap-0 gap-10 justify-between'>
+          <div className='min-h-[35vh] h-fit widgets w-fit md:min-w-[35vw] min-w-full flex flex-col gap-5 pr-10 pl-4 rounded-xl py-5'>
+            <h2 className='text-2xl text-secondary font-medium'>Current Holdings</h2>
             <div>
               <div className='flex gap-10 text-accent'>
                 <span className="font-medium">Company</span>
@@ -108,6 +109,10 @@ const Protected = (props) => {
                 }
               </div>
             </div>
+          </div>
+
+          <div>
+            <WatchList/>
           </div>
         </div>
       </div>
