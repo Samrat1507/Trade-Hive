@@ -67,7 +67,7 @@ const Protected = (props) => {
             <div className="py-5">
               <h2 className="text-accent font-medium">Your Net Profit</h2>
               <span className="text-[#FBF5A5] md:text-5xl text-xl font-semibold">
-                Rs. 43,300.50
+                Rs. {state.user.credit - state.user.debit}
               </span>
             </div>
             <div className="py-5">
