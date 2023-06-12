@@ -208,24 +208,6 @@
   color: #fff;
 }
 
-/* Pay Button */
-.pay-button {
-  width: 100%;
-  padding: 10px;
-  border-radius: 4px;
-  background-color: #ffca3d;
-  border-radius: 25px;
-  
-  font-size: 16px;
-  font-weight: bold;
-  color: #000;
-  cursor: pointer;
-}
-.pay_button:hover {
-  background-color: #4CAF50;
-}
-
-
 
 /* Glassmorphism Styling */
 .glassmorphism {

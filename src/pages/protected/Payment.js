@@ -11,12 +11,12 @@ const Payment = (props) => {
       </h3>
       <div className='flex flex-col md:flex-row'>
         <div className="h-screen md:w-[70vw] primary-bg flex flex-col items-center justify-center">
-          <div className='h-[70vh] flex flex-col items-center gap-4 px-5 pb-10'>
-            <div className='w-full text-center text-white text-2xl mb-2'>Enter Card Details</div>
-            <div className='w-fit glassmorphism rounded-lg py-5 px-8 flex flex-col gap-4'>
+          <div className='h-fit flex flex-col items-center gap-4 px-5  mt-24'>
+            <div className='w-full widgets rounded-lg  pt-12 pb-16 px-8 flex flex-col gap-4 h-full'>
+            <div className=' text-center uppercase text-xl mb-2 tracking-[12px] drop-shadow-md text-secondary'>Enter Card Details</div>
               <input
                 type='text'
-                className='input-field'
+                className='input-field px-2'
                 placeholder='Card Number'
                 maxLength={19}
                 onChange={(e) => {
@@ -29,39 +29,44 @@ const Payment = (props) => {
                 }}
               />
               <div className='flex gap-4'>
-                <div className='flex flex-col'>
-                  <label>CVV</label>
+                <div className='flex flex-col gap-1'>
+                  <label className='text-accent month'>CVV</label>
                   <input
                     type='text'
-                    className='py-1'
+                    className='py-2 rounded-md px-2'
                     placeholder='669'
                     maxLength={4}
                   />
                 </div>
                 <div className='flex flex-col gap-1'>
-                  <label htmlFor='expiryMonth' className='month'>Expiry Month</label>
+                  <label htmlFor='expiryMonth' className='month text-accent'>Expiry Month</label>
                   <input
                     type='number'
                     id='expiryMonth'
-                    className='py-1'
+                    className='py-2 rounded-md px-2'
                     placeholder='MM'
                     min={1}
                     max={12}
                   />
                 </div>
                 <div className='flex flex-col gap-1'>
-                  <label htmlFor='expiryYear' className='month'>Expiry Year</label>
+                  <label htmlFor='expiryYear' className='month text-accent'>Expiry Year</label>
                   <input
                     type='text'
                     id='expiryYear'
-                    className='py-1'
+                    className='py-2 rounded-md px-2'
                     placeholder='YYYY'
                     maxLength={4}
                   />
                 </div>
               </div>
-              <button className='pay-button hover:bg-green-700'>Pay Now</button>
-              <button className='pay-button hover:bg-green-700'>Pay with Account Creds</button>
+              <button className='bg-yellow-200 hover:bg-yellow-100 py-3 font-medium text-primary rounded-xl'>Pay Now</button>
+              <div className='flex items-center gap-10'>
+                <div className='bg-accent h-[1px] w-full'></div>
+                <div className='text-accent font-semibold text-xs'>OR</div>
+                <div className='bg-accent h-[1px] w-full'></div>
+              </div>
+              <button className='bg-yellow-200 hover:bg-yellow-100 py-3 font-medium text-primary rounded-xl'>Pay with Account Creds</button>
             </div>
           </div>
         </div>
