@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import ProtectedNav from "../../../components/ProtectedNav";
 import ProtectedSidebar from "../../../components/ProtectedSidebar";
 import { clerkClient, getAuth, buildClerkProps } from "@clerk/nextjs/server";
-import Link from "next/link";
 import { useSnapshot } from "valtio";
 import state from "../state";
 import { MdOutlineAddCard } from "react-icons/md";
 import PortfolioHoldings from "../../../components/PortfolioHoldings";
 import WatchList from "../../../components/WatchList";
+import { useRouter } from "next/router";
 
 const Protected = (props) => {
   const userEmail = props.__clerk_ssr_state.user.emailAddresses[0].emailAddress;
   const snap = useSnapshot(state);
+  const router = useRouter();
   useEffect(() => {
     const fun = async () => {
       const response = await fetch(
@@ -73,12 +74,17 @@ const Protected = (props) => {
               <h2 className="text-accent font-medium">Account Balance</h2>
               {state.user ? (
                 <div className="flex items-center gap-4 cursor-pointer">
-                <span className="text-[#9DE796] md:text-5xl text-xl font-semibold">
-                  {state.user.credits} creds
-                </span>
-                <div className="text-[#9DE796] md:mt-2 mt-1 md:text-xl text-sm">
-                <MdOutlineAddCard />
-                </div>
+                  <span className="text-[#9DE796] md:text-5xl text-xl font-semibold">
+                    {state.user.credits} creds
+                  </span>
+                  <div className="text-[#9DE796] md:mt-2 mt-1 md:text-xl text-sm">
+                    <MdOutlineAddCard
+                      onClick={(e) => {
+                        e.preventDefault();
+                        router.push("/protected/add-account-bal");
+                      }}
+                    />
+                  </div>
                 </div>
               ) : (
                 <span>
@@ -89,30 +95,31 @@ const Protected = (props) => {
           </div>
         </div>
 
-        <div className='mt-16 pr-5 flex xl:flex-row flex-col xl:gap-0 gap-10 justify-between'>
-          <div className='min-h-[35vh] h-fit widgets w-fit md:min-w-[35vw] min-w-full flex flex-col gap-5 pr-10 pl-4 rounded-xl py-5'>
-            <h2 className='text-2xl text-secondary font-medium'>Current Holdings</h2>
+        <div className="mt-16 pr-5 flex xl:flex-row flex-col xl:gap-0 gap-10 justify-between">
+          <div className="min-h-[35vh] h-fit widgets w-fit md:min-w-[35vw] min-w-full flex flex-col gap-5 pr-10 pl-4 rounded-xl py-5">
+            <h2 className="text-2xl text-secondary font-medium">
+              Current Holdings
+            </h2>
             <div>
-              <div className='flex gap-10 text-accent'>
+              <div className="flex gap-10 text-accent">
                 <span className="font-medium">Company</span>
                 <span className="font-medium">Quantity</span>
                 <span className="font-medium">Current Price</span>
               </div>
-              <div className='w-full h-[1px] bg-secondary mt-2'>
-              </div>
+              <div className="w-full h-[1px] bg-secondary mt-2"></div>
 
-              <div className='mt-4'>
-                {
-                  state.user.holdings ? (
-                    <PortfolioHoldings holdings={state.user.holdings}/>
-                  ) : (<span className='text-accent'>No Holdings were Found</span>)
-                }
+              <div className="mt-4">
+                {state.user.holdings ? (
+                  <PortfolioHoldings holdings={state.user.holdings} />
+                ) : (
+                  <span className="text-accent">No Holdings were Found</span>
+                )}
               </div>
             </div>
           </div>
 
           <div>
-            <WatchList/>
+            <WatchList />
           </div>
         </div>
       </div>

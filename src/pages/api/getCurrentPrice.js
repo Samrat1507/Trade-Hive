@@ -4,7 +4,7 @@ export default async function getCurrentPrice(req, res) {
     if (req.method === 'POST'){
         try {
             const apiKey = process.env.NEXT_PUBLIC_STOCK_API_KEY;
-            const symbol = req.body.symbol; // Replace with the desired stock symbol
+            const symbol = req.body.symbol; 
             
             const apiUrl = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
 
