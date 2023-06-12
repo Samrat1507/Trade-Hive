@@ -16,6 +16,13 @@ const userSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
+  expertBought: {
+    type: Boolean,
+    default: false,
+  },
+  dateExpertBought: {
+    type: Date,
+  },
 });
 
 userSchema.pre("save", async function (next) {
