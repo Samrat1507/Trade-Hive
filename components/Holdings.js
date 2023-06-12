@@ -1,21 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useSnapshot } from "valtio";
+import state from "@/pages/state";
 
 const Holdings = ({ holdings }) => {
   const router = useRouter();
   const [selectedShares, setSelectedShares] = useState(1);
+  const [prices, setPrices] = useState({});
+  const snap = useSnapshot(state)
+  useEffect(() => {
+    Object.entries(holdings).map(async ([key, value]) => {
+      const response = await fetch(
+        "http://localhost:3000/api/getCurrentPrice",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            symbol: key,
+          }),
+        }
+      );
+      const data = await response.json();
+      if (data.price) {
+        setPrices((prevPrices) => ({ ...prevPrices, [key]: data.price }));
+      } else {
+        alert('An error occurred while fetching current prices')
+      }
+    });
+  }, []);
 
-  const handleSell = (e) => {
+  const handleSell = async(e, key, value) => {
     e.preventDefault();
     const confirmed = window.confirm(
       `Are you sure you want to sell ${selectedShares} shares?`
     );
     if (confirmed) {
-      // Perform the necessary logic to update the value in MongoDB user schema here
-      // You can use an API call or any other method to communicate with your backend
-
-      // After the update is successful, you can redirect the user to the Payment page
-      router.push("/protected");
+      const price = parseFloat(prices[key]) * parseFloat(value)
+      const response = await fetch('/api/mongoDB/updateBalance', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: state.user.email,
+          credit: 200,
+          stock: key,
+          qty: value,
+        })
+      })
+      const data = await response.json()
+      alert(data.message)
     }
   };
 
@@ -54,7 +90,7 @@ const Holdings = ({ holdings }) => {
           </div>
           <button
             className="button-bg text-primary px-3 py-1 rounded-lg"
-            onClick={handleSell}
+            onClick={(e)=>{handleSell(e, key, selectedShares)}}
           >
             Sell
           </button>
