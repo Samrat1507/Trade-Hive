@@ -26,7 +26,7 @@ const Holdings = ({ holdings }) => {
       if (data.price) {
         setPrices((prevPrices) => ({ ...prevPrices, [key]: data.price }));
       } else {
-        alert('An error occurred while fetching current prices')
+        // alert('An error occurred while fetching current prices')
       }
     });
   }, []);

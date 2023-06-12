@@ -31,7 +31,7 @@ const Payment = (props) => {
     })
 
     const data = await response.json()
-    alert(data.message)
+    // alert(data.message)
   }
   const handleCreditPayment = async() => {
     console.log(state.user.email)

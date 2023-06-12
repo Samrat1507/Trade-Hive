@@ -7,7 +7,10 @@ export default async function updateBalance (req, res) {
             if(user){
                 user.credits = user.credits + parseFloat(req.body.credit)
                 if(req.body.stock) {
-                    user.holdings[req.body.stock] = user.holdings[req.body.stock] - req.body.qty
+                    console.log(user.holdings)
+                    console.log(req.body)
+                    console.log(user.holdings.get(req.body.stock))
+                    user.holdings.set(req.body.stock,  user.holdings.get(req.body.stock) - req.body.qty)
                 }
                 await user.save()
                 res.status(200).send(JSON.stringify({message: "User updated"}))
