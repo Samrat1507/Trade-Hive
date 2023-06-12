@@ -6,7 +6,7 @@ const PortfolioHoldings = ({ holdings }) => {
   useEffect(() => {
     Object.entries(holdings).map(async ([key, value]) => {
       const response = await fetch(
-        "http://localhost:3000/api/getCurrentPrice",
+        "/api/getCurrentPrice",
         {
           method: "POST",
           headers: {

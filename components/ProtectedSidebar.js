@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSnapshot } from "valtio";
-import state from "@/pages/state";
+import state from "../state";
 import { MdOutlineCancel } from "react-icons/md";
 import { useRouter } from "next/router";
-import { links } from "@/pages/constants";
+import { links } from "../constants";
 import Image from "next/image";
 import logo from '../public/logo.svg'
 import Link from "next/link";

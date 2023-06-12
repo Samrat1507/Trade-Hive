@@ -3,7 +3,7 @@ import { BiWifi } from 'react-icons/bi';
 import { FaCcMastercard } from 'react-icons/fa';
 import { BsSim } from 'react-icons/bs';
 import { useRouter } from 'next/router';
-import state from '../state';
+import state from '../../../state';
 import { useSnapshot } from 'valtio';
 
 const Payment = (props) => {

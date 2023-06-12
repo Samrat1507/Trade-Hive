@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import state from "../state";
+import state from "../../../state";
 import { useSnapshot } from "valtio";
 import ProtectedNav from "../../../components/ProtectedNav";
 import ProtectedSidebar from "../../../components/ProtectedSidebar";
@@ -39,7 +39,7 @@ const ExpertChat = (props) => {
       );
     } else {
       const response = await fetch(
-        "http://localhost:3000/api/mongoDB/buyExpert",
+        "/api/mongoDB/buyExpert",
         {
           method: "POST",
           headers: {

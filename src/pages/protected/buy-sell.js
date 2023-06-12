@@ -2,7 +2,7 @@ import React from 'react'
 import ProtectedNav from '../../../components/ProtectedNav'
 import ProtectedSidebar from '../../../components/ProtectedSidebar'
 import { useSnapshot } from 'valtio'
-import state from '../state'
+import state from '../../../state'
 import Holdings from '../../../components/Holdings'
 import ToBuy from '../../../components/ToBuy'
 

@@ -3,7 +3,7 @@ import ProtectedNav from "../../../components/ProtectedNav";
 import ProtectedSidebar from "../../../components/ProtectedSidebar";
 import { clerkClient, getAuth, buildClerkProps } from "@clerk/nextjs/server";
 import { useSnapshot } from "valtio";
-import state from "../state";
+import state from "../../../state";
 import { MdOutlineAddCard } from "react-icons/md";
 import PortfolioHoldings from "../../../components/PortfolioHoldings";
 import WatchList from "../../../components/WatchList";
@@ -18,7 +18,7 @@ const Protected = (props) => {
   useEffect(() => {
     const fun = async () => {
       const response = await fetch(
-        "http://localhost:3000/api/mongoDB/putUser",
+        "/api/mongoDB/putUser",
         {
           method: "POST",
           headers: {
@@ -38,7 +38,7 @@ const Protected = (props) => {
   useEffect(() => {
     const getUserDetails = async () => {
       const response = await fetch(
-        "http://localhost:3000/api/mongoDB/fetchUser",
+        "/api/mongoDB/fetchUser",
         {
           method: "POST",
           headers: {

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import LandingNav from "../../components/LandingNav";
-import { features } from "./constants";
+import { features } from "../../constants";
 import Feature from "../../components/Feature";
 import Link from "next/link";
 import { useRouter } from "next/router";

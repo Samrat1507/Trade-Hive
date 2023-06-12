@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSnapshot } from "valtio";
-import state from "@/pages/state";
+import state from "../state";
 
 const Holdings = ({ holdings }) => {
   const router = useRouter();
@@ -11,7 +11,7 @@ const Holdings = ({ holdings }) => {
   useEffect(() => {
     Object.entries(holdings).map(async ([key, value]) => {
       const response = await fetch(
-        "http://localhost:3000/api/getCurrentPrice",
+        "/api/getCurrentPrice",
         {
           method: "POST",
           headers: {

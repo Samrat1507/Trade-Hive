@@ -3,7 +3,7 @@ import { UserButton } from "@clerk/nextjs";
 import { RiNotification3Line } from "react-icons/ri";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useSnapshot } from "valtio";
-import state from "@/pages/state";
+import state from "../state";
 import { motion } from "framer-motion";
 import { slideIn, staggerContainer } from "../utils/motion";
 

@@ -19,7 +19,7 @@ export default function Home() {
   )
 }
 export const getServerSideProps = async () => {
-  const response=await fetch('http://localhost:3000/api/mongoDB/connection',{
+  const response=await fetch('/api/mongoDB/connection',{
     method:"GET",
     
   })  

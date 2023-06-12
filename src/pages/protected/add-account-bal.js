@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BiWifi } from "react-icons/bi";
 import { FaCcMastercard } from "react-icons/fa";
 import { BsSim } from "react-icons/bs";
-import state from "../state";
+import state from "../../../state";
 import { useSnapshot } from "valtio";
 import logo from "../../../public/logo.svg";
 import Image from "next/image";
@@ -16,7 +16,7 @@ const AddAccountBalance = () => {
   console.log(state.user.email);
   const handleBalanceUpdate = async () => {
     const response = await fetch(
-      "http://localhost:3000/api/mongoDB/updateBalance",
+      "/api/mongoDB/updateBalance",
       {
         method: "POST",
         headers: {

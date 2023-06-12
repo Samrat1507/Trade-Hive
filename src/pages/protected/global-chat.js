@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChatEngine } from 'react-chat-engine'
 import { useSnapshot } from 'valtio'
-import state from '../state'
+import state from '../../../state'
 import { useEffect } from 'react'
 import { clerkClient, getAuth, buildClerkProps } from "@clerk/nextjs/server";
 import ProtectedNav from '../../../components/ProtectedNav'
