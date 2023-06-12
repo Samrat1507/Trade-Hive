@@ -4,30 +4,45 @@ import { FaCcMastercard } from "react-icons/fa";
 import { BsSim } from "react-icons/bs";
 import state from "../state";
 import { useSnapshot } from "valtio";
+import logo from "../../../public/logo.svg";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 const AddAccountBalance = () => {
   const [amt, setamt] = useState("");
-  const [email, setEmail] = useState("")
-  const snap = useSnapshot(state)
+  const snap = useSnapshot(state);
+  const router = useRouter();
 
+  console.log(state.user.email);
   const handleBalanceUpdate = async () => {
-    console.log(state.username)
-    const response = await fetch('http://localhost:3000/api/mongoDB/updateBalance', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        credit: amt,
-      })
-    })
+    const response = await fetch(
+      "http://localhost:3000/api/mongoDB/updateBalance",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: state.user.email,
+          credit: amt,
+        }),
+      }
+    );
 
-    const data = await response.json()
-    alert(data.message)
+    const data = await response.json();
+    alert(data.message);
   };
   return (
     <div className="h-fit md:min-h-screen w-full primary-bg flex flex-col items-center">
+      <Image
+        src={logo}
+        alt="logo"
+        className="absolute top-5 left-5 h-8 w-8 cursor-pointer"
+        onClick={(e) => {
+          e.preventDefault();
+          router.push("/protected");
+        }}
+      />
       <h3 className="absolute uppercase top-12 cursor-default tracking-[24px] text-secondary text-2xl">
         Payment
       </h3>
@@ -38,14 +53,6 @@ const AddAccountBalance = () => {
               <div className=" text-center uppercase text-xl mb-2 tracking-[12px] drop-shadow-md text-secondary">
                 Enter Card Details
               </div>
-              <input
-                type="text"
-                className="input-field px-2"
-                placeholder="Registered Email"
-                onChange={(e) => {
-                  setEmail(e.target.value)
-                }}
-              />
               <input
                 type="text"
                 className="input-field px-2"
