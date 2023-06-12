@@ -93,8 +93,9 @@ const Protected = (props) => {
             <h2 className='text-2xl text-accent font-medium'>Current Holdings</h2>
             <div>
               <div className='flex gap-10 text-accent'>
-                <span>Company</span>
-                <span>Quantity</span>
+                <span className="font-medium">Company</span>
+                <span className="font-medium">Quantity</span>
+                <span className="font-medium">Current Price</span>
               </div>
               <div className='w-full h-[1px] bg-secondary mt-2'>
               </div>
