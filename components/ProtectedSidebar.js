@@ -81,7 +81,7 @@ const ProtectedSidebar = ({ active }) => {
                   } flex items-center gap-4 px-5 py-1 cursor-pointer`}
                 href={l.to}
               >
-                <a target={l.name==="Statistics and Predictions" ? '_blank' : ''} className={`${active === l.name ? activeLink : normal
+                <a target={l.name==="Statistics and Predictions" ? '_blank' : ''} rel="noreferrer" className={`${active === l.name ? activeLink : normal
                   } flex items-center gap-4 px-5 py-1 cursor-pointer`}>
                 {l.icon}
                 <span className="capitalize">{l.name}</span>
